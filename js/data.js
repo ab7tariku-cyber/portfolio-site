@@ -15,7 +15,7 @@ const WORK_DATA = [
   { tag: 'Faith', name: 'Covenant Generation Church', category: 'Brand Identity', slug: 'covenant', image: 'assets/hero-covenant.jpg', placeholder: 'Covenant Generation Church visual', hasCaseStudy: true },
   { tag: 'Charity', name: 'LHC', category: 'Brand Identity', slug: 'lhc', image: 'assets/hero-lhc.jpg', placeholder: 'LHC visual', hasCaseStudy: true },
   { tag: 'Human Rights', name: 'HALE HRIN', category: 'Brand Identity', slug: 'hale', image: 'assets/hero-hale.jpg', placeholder: 'HALE HRIN visual', hasCaseStudy: true },
-  { tag: 'Industrial', name: 'Lencho Stone Crusher', category: 'Brand Identity', slug: 'lencho', image: null, placeholder: 'Lencho Stone Crusher visual', hasCaseStudy: true },
+  { tag: 'Industrial', name: 'Lencho Stone Crusher', category: 'Brand Identity', slug: 'lencho', image: 'assets/hero-lencho.jpg', placeholder: 'Lencho Stone Crusher visual', hasCaseStudy: true },
   { name: 'Yotor Marketing', category: 'Social Media', image: null, placeholder: 'Yotor Marketing post' },
   { name: 'Gara Missional Bootcamp', category: 'Social Media', image: null, placeholder: 'Gara Missional Bootcamp post' },
   { name: 'Peace Campaign', category: 'Social Media', image: null, placeholder: 'Peace Campaign post' },
