@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" />
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #0a0a1c; }
+    a { color: #a98bec; text-decoration: none; }
+    a:hover { color: #c7b3f5; }
+    @keyframes ddDrift { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.03); } }
+    @keyframes ddPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
+    @keyframes ddBounce { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(6px); opacity: 1; } }
+    @keyframes ddMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes ddFloat1 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(4px,-10px); } }
+    @keyframes ddFloat2 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-6px,-8px); } }
+    @keyframes ddFloat3 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(5px,8px); } }
+    @keyframes ddFloat4 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-5px,9px); } }
+
+  </style>
+</helmet>
+<div ref="{{ setRootRef }}" style="font-family: 'Montserrat', sans-serif; background: {{ bgGradient }}; color: {{ textPrimary }}; min-height: 100vh; overflow-x: hidden; position: relative; transition: background 0.4s ease, color 0.4s ease;">
+
+  <!-- NAV -->
+  <nav style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px clamp(20px, 5vw, 64px); background: {{ navBg }}; backdrop-filter: blur(14px); border-bottom: 1px solid {{ dividerColor }}; flex-wrap: wrap; transition: background 0.4s ease, border-color 0.4s ease;">
+    <a href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; color: {{ textPrimary }};">ABRAHAM<span style="color: {{ accent }};">.</span>TARIKU</a>
+    <div style="display: flex; align-items: center; gap: clamp(12px, 2.4vw, 26px); flex-wrap: wrap;">
+      <a href="#work" style="font-size: 14px; color: {{ navLinkColor }};">Work</a>
+      <a href="#about" style="font-size: 14px; color: {{ navLinkColor }};">About</a>
+      <a href="#guarantee" style="font-size: 14px; color: {{ navLinkColor }};">How I work</a>
+      <a href="#contact" style="font-size: 14px; color: {{ navLinkColor }};">Contact</a>
+      <a href="assets/Abraham Tariku Resume.pdf" target="_blank" style="font-size: 14px; color: {{ navLinkColor }};">Resume</a>
+      <button onClick="{{ toggleTheme }}" aria-label="Toggle theme" style="width: 44px; height: 24px; border-radius: 999px; border: 1px solid {{ dividerColor }}; background: {{ cardBg }}; cursor: pointer; position: relative; padding: 0;">
+        <span style="{{ toggleDotStyle }}"></span>
+      </button>
+      <a href="#contact" style="background: {{ accent }}; color: #0a0e1a; font-weight: 600; font-size: 14px; padding: 10px 20px; border-radius: 999px; white-space: nowrap;" style-hover="opacity: 0.85;">Book a call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="position: relative; min-height: 82vh; display: flex; align-items: center; padding: clamp(16px, 3vw, 32px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px); overflow: hidden;">
+    <sc-if value="{{ showTiles }}" hint-placeholder-val="{{ true }}">
+      <div style="position: absolute; top: -40px; right: -40px; width: 300px; height: 300px; -webkit-mask-image: radial-gradient(circle at top right, black 0%, transparent 70%); mask-image: radial-gradient(circle at top right, black 0%, transparent 70%); pointer-events: none; animation: ddDrift 10s ease-in-out infinite;">
+        <img src="assets/tile-pattern.png" alt="" style="width: 100%; height: 100%; object-fit: contain; opacity: 0.5;" />
+      </div>
+    </sc-if>
+
+    <div style="position: relative; max-width: 1160px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(24px, 5vw, 48px); align-items: center;" data-reveal-key="hero" style="{{ revealHero }}">
+      <div>
+        <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; color: {{ secondary }}; margin-bottom: 22px;">Brand, graphic &amp; social design &mdash; Addis Ababa</div>
+        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(38px, 7.4vw, 84px); line-height: 0.98; margin: 0 0 22px; letter-spacing: -1px;">ABRAHAM<br />TARIKU</h1>
+        <p style="font-size: clamp(16px, 2vw, 19px); color: {{ secondary }}; max-width: 500px; margin: 0 0 36px; line-height: 1.55;">Graduate architect turned designer, based in Addis Ababa. Your brand's destiny isn't found &mdash; it's designed.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px;">
+          <a href="#contact" style="background: {{ accent }}; color: #170a2e; font-weight: 600; font-size: 15px; padding: 15px 28px; border-radius: 999px;" style-hover="opacity: 0.85;">Book a 15-min intro call</a>
+          <a href="#work" style="border: 1px solid {{ dividerColor }}; color: {{ textPrimary }}; font-weight: 500; font-size: 15px; padding: 15px 28px; border-radius: 999px;" style-hover="opacity: 0.7;">See my work</a>
+        </div>
+        <div style="display: flex; gap: clamp(20px, 5vw, 44px); flex-wrap: wrap; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+            <div>
+              <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 26px; color: {{ accent }};">{{ s.value }}</div>
+              <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 1.5px; font-size: 10.5px; color: {{ secondary }}; margin-top: 6px;">{{ s.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position: relative; justify-self: center; align-self: start; width: min(100%, 620px); max-width: calc(100vw - 60px); margin-top: -14px;">
+        <div style="position: absolute; left: 12%; right: 12%; bottom: 0; aspect-ratio: 1 / 1; border-radius: 24px; background: {{ accent }}; opacity: 0.9; z-index: 0;"></div>
+        <div style="width: 100%; aspect-ratio: 1 / 1; border-radius: 20px; overflow: hidden; position: relative; z-index: 1;">
+          <img src="assets/abraham-photo.png" alt="Abraham Tariku" style="width: 100%; height: 100%; object-fit: contain; object-position: center bottom; filter: saturate(1.05);" />
+        </div>
+        <sc-for list="{{ floatTags }}" as="ft" hint-placeholder-count="4">
+          <a href="{{ ft.href }}" onClick="{{ ft.onClick }}" style="{{ ft.style }}">
+            <span style="{{ ft.iconStyle }}"></span>{{ ft.label }}
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="position: absolute; bottom: 24px; left: 0; right: 0; display: flex; justify-content: center; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; color: {{ secondary }}; animation: ddBounce 2s ease-in-out infinite;">Scroll</div>
+  </section>
+
+  <!-- TRUSTED BY MARQUEE -->
+  <section style="padding: clamp(28px, 5vw, 44px) 0; border-top: 1px solid {{ dividerColor }}; border-bottom: 1px solid {{ dividerColor }}; overflow: hidden;">
+    <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; color: {{ secondary }}; text-align: center; margin-bottom: 20px;">Trusted by &amp; worked with</div>
+    <div style="display: flex; width: max-content; animation: ddMarquee 26s linear infinite; gap: clamp(28px, 4vw, 48px); align-items: center;">
+      <img src="assets/tlogo-01.png" alt="Client logo 1" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-02.png" alt="Client logo 2" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-03.png" alt="Client logo 3" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-04.png" alt="Client logo 4" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-05.png" alt="Client logo 5" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-06.png" alt="Client logo 6" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-01.png" alt="Client logo 1" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-02.png" alt="Client logo 2" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-03.png" alt="Client logo 3" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-04.png" alt="Client logo 4" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-05.png" alt="Client logo 5" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+      <img src="assets/tlogo-06.png" alt="Client logo 6" style="height: clamp(72px, 10vw, 112px); width: auto; opacity: 0.85; filter: {{ logoFilter }};" />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px);">
+    <div style="max-width: 1160px; margin: 0 auto;" data-reveal-key="about" style="{{ revealAbout }}">
+      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(24px, 4vw, 40px);">
+        <div>
+          <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; color: {{ secondary }}; margin-bottom: 28px;">Experience</div>
+          <div style="position: relative;">
+            <sc-for list="{{ roadmap }}" as="rm" hint-placeholder-count="4">
+              <div style="display: grid; grid-template-columns: 56px 20px 1fr; gap: 0 18px; position: relative;">
+                <div style="font-family: 'Space Mono', monospace; font-size: 13px; color: {{ secondary }}; padding-top: 2px;">{{ rm.year }}</div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="width: 11px; height: 11px; border-radius: 50%; background: {{ accent }}; flex-shrink: 0; margin-top: 4px;"></div>
+                  <div style="width: 1px; flex: 1; background: {{ dividerColor }};"></div>
+                </div>
+                <div style="padding-bottom: 28px;">
+                  <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 4px;">{{ rm.org }}</div>
+                  <div style="font-size: 14px; color: {{ secondary }};">{{ rm.role }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 1.5px; font-size: 11px; color: {{ secondary }}; margin-bottom: 16px;">Skills</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;">
+            <sc-for list="{{ skills }}" as="sk" hint-placeholder-count="6">
+              <div onMouseEnter="{{ sk.onMouseEnter }}" onMouseLeave="{{ sk.onMouseLeave }}" style="{{ sk.chipStyle }}">{{ sk.name }}</div>
+            </sc-for>
+          </div>
+          <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 1.5px; font-size: 11px; color: {{ secondary }}; margin-bottom: 16px;">Tools</div>
+          <div style="display: flex; gap: 14px; flex-wrap: nowrap; justify-content: flex-start;">
+            <sc-for list="{{ tools }}" as="tl" hint-placeholder-count="4">
+              <div onMouseEnter="{{ tl.onMouseEnter }}" onMouseLeave="{{ tl.onMouseLeave }}" style="{{ tl.wrapStyle }}">
+                <div style="{{ tl.badgeStyle }}">{{ tl.code }}</div>
+                <div style="font-size: 13px; color: {{ secondary }}; margin-top: 8px; text-align: center;">{{ tl.name }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" style="padding: clamp(24px, 5vw, 40px) 0 clamp(48px, 8vw, 96px);">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px);" data-reveal-key="work" style="{{ revealWork }}">
+      <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; color: {{ secondary }}; margin-bottom: 14px; text-align: center;">Selected work</div>
+      <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(26px, 3.6vw, 38px); margin: 0 0 28px; text-align: center;">A collection of my previous work.</h2>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 36px;">
+        <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="6">
+          <button onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="max-width: 1160px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px);">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(12px, 2vw, 20px);">
+        <sc-for list="{{ filteredWork }}" as="w" hint-placeholder-count="6">
+          <a href="{{ w.href }}" onMouseEnter="{{ w.onMouseEnter }}" onMouseLeave="{{ w.onMouseLeave }}" style="display: block; cursor: {{ w.cursor }}; position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; color: inherit; text-decoration: none;">
+            <sc-if value="{{ w.hasImage }}" hint-placeholder-val="{{ false }}">
+              <div style="{{ w.bgStyle }}"></div>
+            </sc-if>
+            <sc-if value="{{ !w.hasImage }}" hint-placeholder-val="{{ true }}">
+              <image-slot id="{{ w.slotId }}" shape="rect" placeholder="{{ w.placeholder }}"></image-slot>
+            </sc-if>
+            <div style="position: absolute; inset: 0; background: {{ accent }}; opacity: {{ w.overlayOpacity }}; mix-blend-mode: multiply; transition: opacity 0.4s ease;"></div>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 45%); opacity: {{ w.overlayOpacity }}; transition: opacity 0.4s ease;"></div>
+            <div style="position: absolute; left: 0; bottom: 0; width: 100%; height: 52px; background: {{ accent }}; transform: {{ w.accentTransform }}; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);"></div>
+            <div style="position: absolute; left: 18px; bottom: 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; color: {{ w.labelColor }}; transform: {{ w.labelTransform }}; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), color 0.3s ease;">{{ w.name }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section id="guarantee" style="padding: clamp(16px, 3vw, 24px) clamp(20px, 5vw, 64px) clamp(32px, 5vw, 64px);">
+    <div style="max-width: 900px; margin: 0 auto; border: 1px solid rgba(124,147,232,0.35); border-radius: 24px; padding: clamp(32px, 5vw, 56px); background: rgba(124,147,232,0.05);" data-reveal-key="guarantee" style="{{ revealGuarantee }}">
+      <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; color: {{ secondary }}; margin-bottom: 14px;">How I work</div>
+      <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(26px, 3.6vw, 36px); margin: 0 0 32px;">Every project starts risk-free.</h2>
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <sc-for list="{{ guaranteePoints }}" as="g" hint-placeholder-count="3">
+          <div style="display: flex; align-items: flex-start; gap: 16px;">
+            <div style="flex-shrink: 0; width: 22px; height: 12px; margin-top: 6px; background: {{ accent }}; border-radius: {{ g.radius }};"></div>
+            <div>
+              <div style="font-weight: 600; font-size: 16.5px; margin-bottom: 4px;">{{ g.title }}</div>
+              <div style="color: {{ secondary }}; font-size: 14.5px; line-height: 1.55;">{{ g.body }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding: clamp(16px, 3vw, 24px) clamp(20px, 5vw, 64px) clamp(32px, 5vw, 64px);">
+    <div style="max-width: 1160px; margin: 0 auto;" data-reveal-key="testimonials" style="{{ revealTestimonials }}">
+      <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; color: {{ secondary }}; margin-bottom: 14px; text-align: center;">What clients say</div>
+      <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(26px, 3.6vw, 36px); margin: 0 0 40px; text-align: center;">Trusted by organizations, not built by committee.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <sc-for list="{{ testimonials }}" as="q" hint-placeholder-count="3">
+          <div style="background: {{ cardBg }}; border: 1px solid {{ cardBorder }}; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+            <div style="font-size: 15px; line-height: 1.65; color: {{ textPrimary }};">&ldquo;{{ q.quote }}&rdquo;</div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, {{ accent }}, #4a2f8f); flex-shrink: 0;"></div>
+              <div>
+                <div style="font-weight: 600; font-size: 14px;">{{ q.name }}</div>
+                <div style="font-size: 12.5px; color: {{ secondary }};">{{ q.role }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="contact" style="padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 64px); text-align: center;" data-reveal-key="cta" style="{{ revealCTA }}">
+    <div style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 1.5px; font-size: 12px; color: {{ secondary }}; margin-bottom: 22px;">
+      <span style="width: 8px; height: 8px; border-radius: 50%; background: #6ee7a8; animation: ddPulse 1.8s ease-in-out infinite;"></span>
+      Currently taking new projects
+    </div>
+    <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(30px, 5vw, 52px); margin: 0 0 32px;">Let's see if we're a fit.</h2>
+    <a href="mailto:ab7tariku@gmail.com" style="display: inline-block; background: {{ accent }}; color: #0a0e1a; font-weight: 600; font-size: 16px; padding: 17px 34px; border-radius: 999px;" style-hover="opacity: 0.85;">Book a 15-min intro call</a>
+    <div style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 28px; font-size: 14.5px;">
+      <a href="mailto:ab7tariku@gmail.com" style="color: {{ secondary }};">ab7tariku@gmail.com</a>
+      <a href="tel:+251939260366" style="color: {{ secondary }};">+251 939 260 366</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="position: relative; padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 64px) clamp(28px, 4vw, 40px); border-top: 1px solid {{ dividerColor }}; overflow: hidden;">
+    <sc-if value="{{ showTiles }}" hint-placeholder-val="{{ true }}">
+      <div style="position: absolute; bottom: -40px; left: -40px; width: 260px; height: 260px; -webkit-mask-image: radial-gradient(circle at bottom left, black 0%, transparent 70%); mask-image: radial-gradient(circle at bottom left, black 0%, transparent 70%); pointer-events: none; animation: ddDrift 12s ease-in-out infinite reverse;">
+        <img src="assets/tile-pattern.png" alt="" style="width: 100%; height: 100%; object-fit: contain; opacity: 0.4; transform: rotate(180deg);" />
+      </div>
+    </sc-if>
+    <div style="position: relative; display: flex; flex-direction: column; gap: 24px; max-width: 1160px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
+        <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px;">ABRAHAM<span style="color: {{ accent }};">.</span>TARIKU</div>
+        <div style="display: flex; gap: 14px;">
+          <sc-for list="{{ socialLinks }}" as="soc" hint-placeholder-count="3">
+            <a href="{{ soc.href }}" target="_blank" aria-label="{{ soc.label }}" style="width: 38px; height: 38px; border-radius: 50%; border: 1px solid {{ dividerColor }}; display: flex; align-items: center; justify-content: center; color: {{ textPrimary }};" style-hover="border-color: {{ accent }}; color: {{ accent }};" dangerouslySetInnerHTML="{{ soc.iconHtml }}"></a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-top: 20px; border-top: 1px solid {{ dividerColor }};">
+        <div style="display: flex; gap: 24px; flex-wrap: wrap; font-size: 13.5px; color: {{ secondary }};">
+          <a href="mailto:ab7tariku@gmail.com" style="color: {{ secondary }};">ab7tariku@gmail.com</a>
+          <a href="tel:+251939260366" style="color: {{ secondary }};">+251 939 260 366</a>
+          <a href="assets/Abraham Tariku Resume.pdf" target="_blank" style="color: {{ secondary }};">Resume</a>
+        </div>
+        <div style="font-size: 13px; color: {{ secondary }};">Based in Addis Ababa &mdash; available worldwide</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7ca8ff&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#4f8cff&quot;,&quot;#7ca8ff&quot;,&quot;#8b93ab&quot;,&quot;#ffffff&quot;]},&quot;showTilePattern&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;enableAnimations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+function stadiumRadius() { return '10px 2px 10px 2px'; }
+
+const WORK_DATA = [
+  { tag: 'Charity', name: 'Nubia Designs', category: 'Brand Identity', slug: 'nubia', slotId: 'work-nubia', image: 'assets/hero-nubia.jpg', placeholder: 'Drop Nubia Designs visual', hasCaseStudy: true },
+  { tag: 'Real Estate', name: 'Godo Properties', category: 'Brand Identity', slug: 'godo-properties', slotId: 'work-godo', image: 'assets/hero-godo.jpg', placeholder: 'Drop Godo Properties visual', hasCaseStudy: true },
+  { tag: 'Faith', name: 'Covenant Generation Church', category: 'Brand Identity', slug: 'covenant', slotId: 'work-covenant', image: 'assets/hero-covenant.jpg', placeholder: 'Drop Covenant Generation Church visual', hasCaseStudy: true },
+  { tag: 'Charity', name: 'LHC', category: 'Brand Identity', slug: 'lhc', slotId: 'work-lhc', image: 'assets/hero-lhc.jpg', placeholder: 'Drop LHC visual', hasCaseStudy: true },
+  { tag: 'Human Rights', name: 'HALE HRIN', category: 'Brand Identity', slug: 'hale', slotId: 'work-hale', image: 'assets/hero-hale.jpg', placeholder: 'Drop HALE HRIN visual', hasCaseStudy: true },
+  { tag: 'Industrial', name: 'Lencho Stone Crusher', category: 'Brand Identity', slug: 'lencho', slotId: 'work-lencho', image: 'assets/hero-lencho.jpg', placeholder: 'Drop Lencho Stone Crusher visual', hasCaseStudy: true },
+  { name: 'Yotor Marketing', category: 'Social Media', slotId: 'sm-yotor', placeholder: 'Drop Yotor Marketing post' },
+  { name: 'Gara Missional Bootcamp', category: 'Social Media', slotId: 'sm-gara', placeholder: 'Drop Gara Missional Bootcamp post' },
+  { name: 'Peace Campaign', category: 'Social Media', slotId: 'sm-peace', placeholder: 'Drop Peace Campaign post' },
+  { name: 'HU Fellow Works', category: 'Social Media', slotId: 'sm-hu', placeholder: 'Drop HU Fellow Works post' },
+  { name: 'African Holding Group — General Assembly', category: 'Print & Editorial', slotId: 'print-ahg', placeholder: 'Drop African Holding General Assembly asset' },
+  { name: 'Purity Magazine', category: 'Print & Editorial', slotId: 'print-purity', placeholder: 'Drop Purity Magazine spread' },
+  { name: 'African Holding Group — Stationery', category: 'Brand Applications', slotId: 'merch-ahg', placeholder: 'Drop AHG stationery design' },
+  { name: 'African Holding Group — Sales Uniform', category: 'Brand Applications', slug: 'ahg-uniform', slotId: 'merch-uniform', image: 'assets/work-uniform.jpg', placeholder: 'Drop uniform design', hasCaseStudy: true },
+  { name: 'Residential Living Room', category: 'Interior Design & Visualization', slotId: 'interior-living', placeholder: 'Drop living room visualization' },
+  { name: 'Modern Kitchen Concept', category: 'Interior Design & Visualization', slotId: 'interior-kitchen', placeholder: 'Drop kitchen visualization' },
+  { name: 'Boutique Office Space', category: 'Interior Design & Visualization', slotId: 'interior-office', placeholder: 'Drop office visualization' },
+  { name: 'Hospitality Lounge', category: 'Interior Design & Visualization', slotId: 'interior-lounge', placeholder: 'Drop lounge visualization' },
+];
+const TAB_LIST = ['Brand Identity', 'Social Media', 'Print & Editorial', 'Brand Applications', 'Interior Design & Visualization'];
+
+class Component extends DCLogic {
+  state = { revealed: new Set(), hoveredWork: null, hoveredSkill: null, hoveredTool: null, activeTab: 'Brand Identity', theme: 'dark', isMobile: false };
+
+  componentDidMount() {
+    this._mq = window.matchMedia('(max-width: 720px)');
+    this.setState({ isMobile: this._mq.matches });
+    this._mqHandler = (e) => this.setState({ isMobile: e.matches });
+    this._mq.addEventListener('change', this._mqHandler);
+    if (this.props.enableAnimations === false) return;
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const key = entry.target.getAttribute('data-reveal-key');
+          if (key && !this.state.revealed.has(key)) {
+            const next = new Set(this.state.revealed);
+            next.add(key);
+            this.setState({ revealed: next });
+          }
+          this._observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    if (this._root) {
+      this._root.querySelectorAll('[data-reveal-key]').forEach((el) => this._observer.observe(el));
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+    if (this._mq && this._mqHandler) this._mq.removeEventListener('change', this._mqHandler);
+  }
+
+  styleFor(key) {
+    const animOff = this.props.enableAnimations === false;
+    const revealed = animOff || this.state.revealed.has(key);
+    return {
+      opacity: revealed ? 1 : 0,
+      transform: revealed ? 'translateY(0)' : 'translateY(24px)',
+      transition: 'opacity 0.7s ease, transform 0.7s ease',
+    };
+  }
+
+  renderVals() {
+    const accent = this.props.accentColor ?? '#4f8cff';
+    const isDark = this.state.theme !== 'light';
+    const isMobile = this.state.isMobile;
+    const secondary = isDark ? '#8b93ab' : '#4a5568';
+    const textPrimary = isDark ? '#f2f0fb' : '#0a0e1a';
+    const bgGradient = isDark
+      ? 'linear-gradient(160deg, #000000 0%, #05070f 45%, #0a1730 100%)'
+      : 'linear-gradient(160deg, #ffffff 0%, #f2f6fd 50%, #e6eefb 100%)';
+    const navBg = isDark ? 'rgba(0,0,0,0.72)' : 'rgba(255,255,255,0.78)';
+    const dividerColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(10,20,40,0.12)';
+    const cardBg = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(10,20,40,0.03)';
+    const cardBorder = isDark ? 'rgba(255,255,255,0.09)' : 'rgba(10,20,40,0.1)';
+    const navLinkColor = isDark ? '#d8d5ec' : '#33394a';
+    const mutedText = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(10,20,40,0.28)';
+    const toggleDotStyle = {
+      position: 'absolute', top: '2px', left: isDark ? '2px' : '22px', width: '18px', height: '18px',
+      borderRadius: '50%', background: accent, transition: 'left 0.25s ease',
+    };
+
+    const floatSpecs = [
+      { label: 'Brand Design', top: '6%', left: 'max(-16px, -4%)', anim: 'ddFloat1 6s ease-in-out infinite', tab: 'Brand Identity', target: 'work', radius: stadiumRadius() },
+      { label: 'Graphic Design', top: '30%', right: 'max(-16px, -4%)', anim: 'ddFloat2 7s ease-in-out infinite', tab: 'Print & Editorial', target: 'work', radius: '2px 10px 2px 10px' },
+      { label: 'Social Media', bottom: '20%', left: 'max(-14px, -4%)', anim: 'ddFloat3 6.5s ease-in-out infinite', tab: 'Social Media', target: 'work', radius: stadiumRadius() },
+      { label: 'Marketing', bottom: '4%', right: 'max(-14px, -4%)', anim: 'ddFloat4 7.5s ease-in-out infinite', tab: 'Social Media', target: 'work', radius: '2px 10px 2px 10px' },
+    ];
+    const floatTags = floatSpecs.map((f) => ({
+      label: f.label,
+      href: '#' + f.target,
+      onClick: f.tab ? () => this.setState({ activeTab: f.tab }) : undefined,
+      iconStyle: { display: 'inline-block', width: '12px', height: '7px', background: '#0a0e1a', borderRadius: f.radius, marginRight: '7px', verticalAlign: 'middle' },
+      style: {
+        position: 'absolute', top: f.top, bottom: f.bottom, left: f.left, right: f.right,
+        display: 'inline-flex', alignItems: 'center', maxWidth: 'calc(100vw - 40px)',
+        background: accent, color: '#0a0e1a',
+        fontFamily: "'Space Mono', monospace", fontSize: '10.5px', fontWeight: 700,
+        padding: '7px 12px', borderRadius: '999px', whiteSpace: 'nowrap', cursor: 'pointer', textDecoration: 'none',
+        boxShadow: '0 6px 16px rgba(0,0,0,0.3)', animation: f.anim, zIndex: 3,
+      },
+    }));
+
+    const iconSvg = {
+      telegram: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21.05 3.87 2.9 10.98c-1.24.5-1.23 1.2-.23 1.5l4.65 1.45 1.8 5.6c.22.6.36.84.73.84.28 0 .4-.13.56-.29l2.1-2.03 4.37 3.23c.8.45 1.38.22 1.58-.74l2.86-13.5c.3-1.2-.45-1.7-1.27-1.17Zm-11.3 10.1-1.9-.6L17.6 7.4c.32-.2.61-.09.35.15l-8.2 6.42Z"/></svg>',
+      linkedin: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5C4.98 4.6 4.13 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2ZM1.5 8.24h3V22h-3V8.24Zm6 0h2.88v1.88h.04c.4-.76 1.4-1.56 2.88-1.56 3.08 0 3.65 2.03 3.65 4.66V22h-3v-6.4c0-1.53-.03-3.5-2.13-3.5-2.14 0-2.47 1.67-2.47 3.4V22h-3V8.24Z"/></svg>',
+      behance: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7.8 12.16c1-.44 1.6-1.3 1.6-2.62 0-2.36-1.7-3.3-3.87-3.3H0v13.6h5.85c2.4 0 4.5-1.02 4.5-3.7 0-1.68-.83-2.7-2.55-3ZM2.7 8.4h2.55c1.03 0 1.95.28 1.95 1.5 0 1.1-.75 1.6-1.87 1.6H2.7V8.4Zm2.95 9.2H2.7v-3.5h3.02c1.25 0 2.14.53 2.14 1.75 0 1.28-1 1.75-2.2 1.75ZM24 14.55c0-2.9-1.7-5.35-4.83-5.35-3.05 0-5.14 2.3-5.14 5.35 0 3.1 1.98 5.3 5.17 5.3 2.28 0 3.9-1 4.63-3.14h-2.34c-.24.68-1.05 1.1-2.15 1.1-1.5 0-2.35-.9-2.5-2.34h7.13c.02-.3.03-.6.03-.92Zm-7.14-1.4c.15-1.2 1-1.94 2.2-1.94 1.15 0 1.95.78 2.03 1.94h-4.23ZM13.9 5.3h5.55v1.4H13.9V5.3Z"/></svg>',
+    };
+    const socialLinks = [
+      { label: 'Telegram', short: 'TG', href: 'https://t.me/ab7tariku', iconHtml: { __html: iconSvg.telegram } },
+      { label: 'LinkedIn', short: 'in', href: 'https://www.linkedin.com/in/abraham-tariku7', iconHtml: { __html: iconSvg.linkedin } },
+      { label: 'Behance', short: 'Be', href: 'https://www.behance.net/abrahamtariku', iconHtml: { __html: iconSvg.behance } },
+    ];
+
+    const logoFilter = isDark ? 'brightness(0) invert(1)' : 'brightness(0)';
+
+    const stats = [
+      { value: '20+', label: 'Projects delivered' },
+      { value: '4.9/5', label: 'Client rating' },
+      { value: '10 Day', label: 'Avg turnaround' },
+    ];
+
+    const roadmap = [
+      { year: 'Present', org: 'HALE Inclusive Network', role: 'Digital Media Head & Social Media Manager' },
+      { year: '2024', org: 'Independent / Freelance', role: 'Brand & Graphic Designer' },
+      { year: '2023', org: 'Great Commission Ministry Ethiopia', role: 'Digital Strategy Intern' },
+      { year: '2022', org: 'African Holding Group', role: 'Marketing Officer' },
+    ];
+    const skillNames = [
+      'Logo & mark design',
+      'Brand identity systems',
+      'Social media & print graphics',
+      'Signage & merchandise',
+    ];
+    const skills = skillNames.map((name) => ({
+      name,
+      chipStyle: {
+        padding: '10px 16px',
+        borderRadius: '999px',
+        fontSize: '14px',
+        fontWeight: 500,
+        border: `1px solid ${this.state.hoveredSkill === name ? accent : dividerColor}`,
+        background: this.state.hoveredSkill === name ? accent : 'transparent',
+        color: this.state.hoveredSkill === name ? '#0d0d10' : textPrimary,
+        cursor: 'default',
+        transition: 'background 0.25s ease, border-color 0.25s ease, color 0.25s ease',
+      },
+      onMouseEnter: () => this.setState({ hoveredSkill: name }),
+      onMouseLeave: () => this.setState({ hoveredSkill: null }),
+    }));
+
+    const toolData = [
+      { code: 'Ai', name: 'Adobe Illustrator' },
+      { code: 'Ps', name: 'Adobe Photoshop' },
+      { code: 'Id', name: 'Adobe InDesign' },
+      { code: 'Pr', name: 'Adobe Premiere' },
+    ];
+    const tools = toolData.map((t) => ({
+      ...t,
+      wrapStyle: { display: 'flex', flexDirection: 'column', alignItems: 'center', width: '76px', cursor: 'default' },
+      badgeStyle: {
+        width: '56px', height: '56px', borderRadius: '14px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: '15px',
+        border: `1px solid ${this.state.hoveredTool === t.code ? accent : dividerColor}`,
+        background: this.state.hoveredTool === t.code ? accent : cardBg,
+        color: this.state.hoveredTool === t.code ? '#0d0d10' : textPrimary,
+        transform: this.state.hoveredTool === t.code ? 'translateY(-4px) scale(1.06)' : 'translateY(0) scale(1)',
+        transition: 'transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease',
+      },
+      onMouseEnter: () => this.setState({ hoveredTool: t.code }),
+      onMouseLeave: () => this.setState({ hoveredTool: null }),
+    }));
+
+    const tabs = TAB_LIST.map((label) => {
+      const active = this.state.activeTab === label;
+      return {
+        label,
+        onClick: () => this.setState({ activeTab: label }),
+        style: {
+          fontFamily: "'Space Mono', monospace",
+          fontWeight: 700,
+          fontSize: '12.5px',
+          padding: '10px 18px',
+          borderRadius: '999px',
+          whiteSpace: 'nowrap',
+          cursor: 'pointer',
+          border: active ? `1px solid ${accent}` : '1px solid rgba(124,147,232,0.4)',
+          background: active ? accent : 'transparent',
+          color: active ? '#170a2e' : accent,
+          transition: 'all 0.25s ease',
+        },
+      };
+    });
+
+    const workItems = WORK_DATA.map((w) => ({
+      ...w,
+      href: w.hasCaseStudy ? 'Case Study.dc.html?project=' + w.slug : null,
+    }));
+    const filtered = workItems.filter((w) => w.category === this.state.activeTab);
+
+    const filteredWork = filtered.map((w) => ({
+      ...w,
+      cursor: w.href ? 'pointer' : 'default',
+      onClick: undefined,
+      hasImage: !!w.image,
+      bgStyle: {
+        width: '100%', height: '100%', position: 'absolute', inset: 0,
+        backgroundImage: w.image ? `url(${w.image})` : 'none',
+        backgroundSize: 'cover', backgroundPosition: 'center',
+        transform: this.state.hoveredWork === w.slotId ? 'scale(1.06)' : 'scale(1)',
+        transition: 'transform 0.6s cubic-bezier(0.22,1,0.36,1)',
+      },
+      imgTransform: this.state.hoveredWork === w.slotId ? 'scale(1.06)' : 'scale(1)',
+      overlayOpacity: this.state.hoveredWork === w.slotId ? 1 : 0,
+      accentTransform: this.state.hoveredWork === w.slotId ? 'translateY(0)' : 'translateY(100%)',
+      labelColor: this.state.hoveredWork === w.slotId ? '#0d0d10' : '#fff',
+      labelTransform: this.state.hoveredWork === w.slotId ? 'translateY(-4px)' : 'translateY(0)',
+      onMouseEnter: () => this.setState({ hoveredWork: w.slotId }),
+      onMouseLeave: () => this.setState({ hoveredWork: null }),
+    }));
+
+
+    const guaranteePoints = [
+      { title: 'Free discovery sprint', body: 'I map your positioning and audience before any contract is signed.', radius: stadiumRadius() },
+      { title: 'Pay after the first concept', body: 'You see real design direction before committing a dollar.', radius: '2px 10px 2px 10px' },
+      { title: 'Unlimited revisions in scope', body: 'I keep refining until the identity feels unmistakably yours.', radius: stadiumRadius() },
+    ];
+
+    const testimonials = [
+      { quote: 'He gave our organization an identity that finally felt like us, not a template with our name on it.', name: 'Bethelhem G.', role: 'Program Lead, Nubia Designs' },
+      { quote: 'Every symbol in the mark had a reason. It made the whole network feel unified for the first time.', name: 'Yonas M.', role: 'Coordinator, HALE' },
+      { quote: 'The union finally has a mark that feels like it belongs to the students who use it.', name: 'Selam T.', role: 'Chairperson, HUSU' },
+    ];
+
+    return {
+      accent,
+      secondary,
+      textPrimary,
+      bgGradient,
+      navBg,
+      dividerColor,
+      cardBg,
+      cardBorder,
+      navLinkColor,
+      mutedText,
+      toggleDotStyle,
+      toggleTheme: () => this.setState({ theme: isDark ? 'light' : 'dark' }),
+      socialLinks,
+      floatTags,
+      showTiles: this.props.showTilePattern ?? true,
+      stats,
+      skills,
+      tools,
+      roadmap,
+      logoFilter,
+      tabs,
+      filteredWork,
+      guaranteePoints,
+      testimonials,
+      setRootRef: (el) => { this._root = el; },
+      revealHero: this.styleFor('hero'),
+      revealAbout: this.styleFor('about'),
+      revealWork: this.styleFor('work'),
+      revealGuarantee: this.styleFor('guarantee'),
+      revealTestimonials: this.styleFor('testimonials'),
+      revealCTA: this.styleFor('cta'),
+    };
+  }
+}
+</script>
+</body>
+</html>

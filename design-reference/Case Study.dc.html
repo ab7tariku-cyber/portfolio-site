@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" />
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #0a0a1c; }
+    a { color: #a98bec; text-decoration: none; }
+    a:hover { color: #c7b3f5; }
+    @keyframes ddDrift { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.03); } }
+  </style>
+</helmet>
+<div style="font-family: 'Montserrat', sans-serif; background: linear-gradient(160deg, #000000 0%, #05070f 45%, #0a1730 100%); color: #f2f0fb; min-height: 100vh; overflow-x: hidden; position: relative;">
+
+  <!-- NAV -->
+  <nav style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px clamp(20px, 5vw, 64px); background: rgba(10,10,28,0.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap;">
+    <a href="Design & Destiny Landing.dc.html" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; color: #f2f0fb;">ABRAHAM<span style="color: #4f8cff;">.</span>TARIKU</a>
+    <a href="Design & Destiny Landing.dc.html#work" style="font-size: 14px; color: #d8d5ec;">&larr; All work</a>
+  </nav>
+
+  <!-- HERO IMAGE -->
+  <div style="width: 100%; aspect-ratio: 4253 / 2340; position: relative;">
+    <sc-if value="{{ heroImageSrc }}" hint-placeholder-val="{{ false }}">
+      <img src="{{ heroImageSrc }}" alt="{{ project.name }}" style="width: 100%; height: 100%; object-fit: cover;" />
+    </sc-if>
+    <sc-if value="{{ !heroImageSrc }}" hint-placeholder-val="{{ true }}">
+      <image-slot id="{{ heroSlotId }}" shape="rect" placeholder="Drop hero image for this project" style="width: 100%; height: 100%;"></image-slot>
+    </sc-if>
+  </div>
+
+  <!-- ABOUT THE BRAND -->
+  <section style="padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px);">
+    <div style="max-width: 760px; margin: 0 auto;">
+      <div style="display: flex; gap: 28px; flex-wrap: wrap; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 1.5px; font-size: 11px; color: {{ secondary }}; margin-bottom: 20px;">
+        <span>Brand &mdash; {{ project.name }}</span>
+        <span>Type &mdash; {{ project.category }}</span>
+      </div>
+      <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(26px, 3.6vw, 40px); margin: 0 0 28px; text-wrap: pretty;">{{ project.headline }}</h2>
+      <p style="color: {{ secondary }}; font-size: 17px; line-height: 1.75; margin: 0 0 18px;">{{ project.overview1 }}</p>
+      <p style="color: {{ secondary }}; font-size: 17px; line-height: 1.75; margin: 0;">{{ project.overview2 }}</p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section style="padding: 0 clamp(20px, 5vw, 64px) clamp(48px, 8vw, 96px);">
+    <div style="max-width: 1160px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr; gap: clamp(16px, 3vw, 28px);">
+      <sc-for list="{{ gallerySlots }}" as="g" hint-placeholder-count="13">
+        <div style="grid-column: 1; aspect-ratio: {{ g.ratio }}; border-radius: 8px; overflow: hidden;">
+          <sc-if value="{{ g.image }}" hint-placeholder-val="{{ false }}">
+            <img src="{{ g.image }}" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
+          </sc-if>
+          <sc-if value="{{ !g.image }}" hint-placeholder-val="{{ true }}">
+            <image-slot id="{{ g.id }}" shape="rect" placeholder="{{ g.placeholder }}" style="width: 100%; height: 100%;"></image-slot>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 64px); text-align: center;">
+    <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(26px, 3.6vw, 40px); margin: 0 0 28px; max-width: 640px; margin-left: auto; margin-right: auto; text-wrap: pretty;">Ready to give your brand an identity like this?</h2>
+    <a href="mailto:ab7tariku@gmail.com" style="display: inline-block; background: {{ accent }}; color: #170a2e; font-weight: 600; font-size: 16px; padding: 17px 34px; border-radius: 999px;" style-hover="opacity: 0.85;">Let's collaborate &rarr;</a>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <a href="{{ nextProject.href }}" style="display: block; position: relative; margin: 0 clamp(20px, 5vw, 64px) clamp(48px, 8vw, 96px); border-radius: 8px; overflow: hidden; color: inherit;">
+    <div style="max-width: 1160px; margin: 0 auto; width: 100%; height: clamp(280px, 44vw, 460px); position: relative;">
+      <image-slot id="{{ nextProject.slotId }}" shape="rect" placeholder="{{ nextProject.placeholder }}" style="width: 100%; height: 100%;"></image-slot>
+      <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,28,0.8), rgba(10,10,28,0.2)); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 24px;">
+        <div style="font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: {{ secondary }}; margin-bottom: 12px;">Next project</div>
+        <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(28px, 5vw, 52px);">{{ nextProject.name }} &rarr;</div>
+      </div>
+    </div>
+  </a>
+
+  <!-- FOOTER -->
+  <footer style="position: relative; padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 64px) clamp(28px, 4vw, 40px); border-top: 1px solid rgba(255,255,255,0.08); overflow: hidden;">
+    <div style="position: absolute; bottom: -40px; left: -40px; width: 260px; height: 260px; -webkit-mask-image: radial-gradient(circle at bottom left, black 0%, transparent 70%); mask-image: radial-gradient(circle at bottom left, black 0%, transparent 70%); pointer-events: none; animation: ddDrift 12s ease-in-out infinite reverse;">
+      <img src="assets/tile-pattern.png" alt="" style="width: 100%; height: 100%; object-fit: contain; opacity: 0.4; transform: rotate(180deg);" />
+    </div>
+    <div style="position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; max-width: 1160px; margin: 0 auto;">
+      <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px;">ABRAHAM<span style="color: {{ accent }};">.</span>TARIKU</div>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; font-size: 13.5px; color: {{ secondary }};">
+        <a href="#" style="color: {{ secondary }};">Privacy</a>
+        <a href="#" style="color: {{ secondary }};">Terms</a>
+      </div>
+      <div style="display: flex; gap: 20px; font-size: 13.5px;">
+        <a href="https://www.linkedin.com/in/abraham-tariku7" target="_blank" style="color: {{ secondary }};">LinkedIn</a>
+        <a href="mailto:ab7tariku@gmail.com" style="color: {{ secondary }};">Email</a>
+      </div>
+      <div style="font-size: 13px; color: {{ secondary }};">Based in Addis Ababa &mdash; available worldwide</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PROJECT_LIST = [
+  { slug: 'hale', name: 'HALE HRIN', category: 'Branding', headline: 'A human rights and inclusion network identity.', overview1: 'HALE: Human Rights and Inclusion Network (H-HRIN) is a board-led CSO in Ethiopia advancing access to justice, gender equality, child and labor rights, disability inclusion, cultural rights, and environmental sustainability.', overview2: 'The mark combines a running kid symbolizing empowerment, a carrying hand representing unity and support, and a green leaf signifying environmental sustainability and growth.' },
+  { slug: 'lencho', name: 'Lencho Stone Crusher', category: 'Branding', headline: 'An industrial brand identity built for durability and scale.', overview1: 'Lencho Stone Crusher needed a mark and system that read as rugged and dependable across heavy equipment, signage, and print.', overview2: 'The identity leans into bold geometry and an industrial palette, built to hold up at any size from a hard hat sticker to a site banner.' },
+  { slug: 'nubia', name: 'Nubia Designs', category: 'Branding', headline: 'A brand identity built for a growing design venture.', overview1: 'Nubia Designs needed a mark that felt distinctive and premium from the very first touchpoint.', overview2: 'The system pairs a confident wordmark with a flexible visual language built to scale across print and digital.' },
+  { slug: 'godo-properties', name: 'Godo Properties', category: 'Branding', headline: 'A real estate brand identity built on trust and scale.', overview1: 'Godo Properties needed an identity that read as established and trustworthy to buyers and investors alike.', overview2: 'The mark and system carry across signage, marketing collateral, and digital touchpoints with the same confident tone.' },
+  { slug: 'lhc', name: 'LHC', category: 'Branding', headline: 'A charity brand identity for children in need.', overview1: 'LHC is a charity club dedicated to helping children in need. The identity had to carry warmth and hope while staying credible for donors and partners.', overview2: 'The system pairs a friendly mark with a warm palette, extended into a supporting pattern used across materials.' },
+  { slug: 'covenant', name: 'Covenant Generation Church', category: 'Branding', headline: 'A logo identity for a growing church community.', overview1: 'Covenant Generation Church needed a mark that felt welcoming and enduring, fit for a growing congregation.', overview2: 'The identity balances symbolism and simplicity so it reads clearly at any size, from print bulletins to signage.' },
+  { slug: 'ahg-uniform', name: 'African Holding Group Sales Uniform', category: 'Merchandise', headline: 'More than a uniform, this concept was designed as a wearable extension of the brand.', overview1: 'For African Holding Group\u2019s sales team, I created a visual system that balances professionalism, cultural character, and everyday comfort.', overview2: 'Sage green, bold black, tailored silhouettes, heritage-inspired geometric details, and signature gold accessories come together to create a confident and recognizable identity\u2014ensuring the team looks unified while allowing flexibility and individual expression.', gallery: ['assets/uniform-detail-1.jpg', 'assets/uniform-detail-2.jpg', 'assets/uniform-detail-3.jpg'] },
+];
+const PROJECTS = {};
+PROJECT_LIST.forEach((p, i) => { PROJECTS[p.slug] = { ...p, index: String(i + 1).padStart(2, '0') + ' / 06' }; });
+const ALL_SLUGS = PROJECT_LIST.map((p) => p.slug);
+
+class Component extends DCLogic {
+  state = { slug: 'lhc' };
+
+  componentDidMount() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('project');
+    if (slug && PROJECTS[slug]) this.setState({ slug });
+  }
+
+  renderVals() {
+    const accent = '#4f8cff';
+    const secondary = '#8b93ab';
+    const project = PROJECTS[this.state.slug] || PROJECTS.lhc;
+    const slug = this.state.slug;
+
+    const galleryImages = project.gallery || [];
+    const ratios = new Array(13).fill('4253/2340');
+    const gallerySlots = Array.from({ length: 13 }, (_, i) => ({
+      id: slug + '-g' + (i + 1),
+      placeholder: 'Drop mockup ' + (i + 1),
+      image: galleryImages[i],
+      ratio: ratios[i],
+      span: 'span 1',
+    }));
+
+    const nextSlug = ALL_SLUGS[(ALL_SLUGS.indexOf(slug) + 1) % ALL_SLUGS.length];
+    const nextProject = {
+      name: PROJECTS[nextSlug].name,
+      href: 'Case Study.dc.html?project=' + nextSlug,
+      slotId: nextSlug + '-hero',
+      placeholder: 'Drop ' + PROJECTS[nextSlug].name + ' visual',
+    };
+
+    return {
+      accent,
+      secondary,
+      project,
+      heroImageSrc: project.heroImage,
+      heroSlotId: slug + '-hero',
+      gallerySlots,
+      nextProject,
+    };
+  }
+}
+</script>
+</body>
+</html>
