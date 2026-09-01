@@ -23,7 +23,8 @@
   /* ---------- Gallery ---------- */
   var galleryImages = project.gallery || [];
   var csGallery = document.getElementById('csGallery');
-  for (var i = 0; i < 13; i++) {
+  var slotCount = galleryImages.length || 13;
+  for (var i = 0; i < slotCount; i++) {
     var item = document.createElement('div');
     item.className = 'cs-gallery-item';
     var img = galleryImages[i];
