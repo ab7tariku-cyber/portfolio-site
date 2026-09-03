@@ -18,7 +18,9 @@
   document.getElementById('csMetaType').textContent = 'Type — ' + project.category;
   document.getElementById('csHeadline').textContent = project.headline;
   document.getElementById('csOverview1').textContent = project.overview1;
-  document.getElementById('csOverview2').textContent = project.overview2;
+  var overview2El = document.getElementById('csOverview2');
+  overview2El.textContent = project.overview2;
+  overview2El.style.display = project.overview2 ? '' : 'none';
 
   /* ---------- Gallery ---------- */
   var galleryImages = project.gallery || [];
