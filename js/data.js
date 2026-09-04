@@ -34,13 +34,6 @@ const STATS = [
   { value: '10 Day', label: 'Avg turnaround' },
 ];
 
-const ROADMAP = [
-  { year: 'Jul 2024 – Sep 2024', org: 'HALE Inclusive Network', role: 'Digital Media Head & Social Media Manager' },
-  { year: '2022 – Present', org: 'Independent / Freelance', role: 'Brand & Graphic Designer and Architect' },
-  { year: 'Jan 2026 – Jul 2026', org: 'Great Commission Ministry Ethiopia', role: 'Digital Strategy Intern' },
-  { year: 'Jul 2026 – Present', org: 'African Holding Group', role: 'Marketing Officer' },
-];
-
 const SKILLS = [
   'Logo & mark design',
   'Brand identity systems',
