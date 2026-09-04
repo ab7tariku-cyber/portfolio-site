@@ -389,13 +389,14 @@ html[data-theme='light'] .hero-stats { border-top-color: rgba(10, 20, 40, 0.12);
 
 .timeline-row {
   display: grid;
-  grid-template-columns: 56px 20px 1fr;
+  grid-template-columns: 100px 20px 1fr;
   gap: 0 18px;
   position: relative;
 }
 .timeline-year {
   font-family: 'Space Mono', monospace;
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.4;
   color: var(--text-secondary);
   padding-top: 2px;
 }

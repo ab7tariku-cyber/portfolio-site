@@ -35,10 +35,10 @@ const STATS = [
 ];
 
 const ROADMAP = [
-  { year: 'Present', org: 'HALE Inclusive Network', role: 'Digital Media Head & Social Media Manager' },
-  { year: '2024', org: 'Independent / Freelance', role: 'Brand & Graphic Designer' },
-  { year: '2023', org: 'Great Commission Ministry Ethiopia', role: 'Digital Strategy Intern' },
-  { year: '2022', org: 'African Holding Group', role: 'Marketing Officer' },
+  { year: 'Jul 2024 – Sep 2024', org: 'HALE Inclusive Network', role: 'Digital Media Head & Social Media Manager' },
+  { year: '2022 – Present', org: 'Independent / Freelance', role: 'Brand & Graphic Designer and Architect' },
+  { year: 'Jan 2026 – Jul 2026', org: 'Great Commission Ministry Ethiopia', role: 'Digital Strategy Intern' },
+  { year: 'Jul 2026 – Present', org: 'African Holding Group', role: 'Marketing Officer' },
 ];
 
 const SKILLS = [
