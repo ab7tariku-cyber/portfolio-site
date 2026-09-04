@@ -45,6 +45,18 @@
   }
   marqueeTrack.innerHTML = buildLogos();
 
+  /* ---------- Timeline ---------- */
+  var timeline = document.getElementById('timeline');
+  ROADMAP.forEach(function (rm) {
+    var row = document.createElement('div');
+    row.className = 'timeline-row';
+    row.innerHTML =
+      '<div class="timeline-year">' + rm.year + '</div>' +
+      '<div class="timeline-track"><div class="timeline-dot"></div><div class="timeline-line"></div></div>' +
+      '<div class="timeline-content"><div class="timeline-org">' + rm.org + '</div><div class="timeline-role">' + rm.role + '</div></div>';
+    timeline.appendChild(row);
+  });
+
   /* ---------- Skills ---------- */
   var skillsRow = document.getElementById('skillsRow');
   SKILLS.forEach(function (name) {
