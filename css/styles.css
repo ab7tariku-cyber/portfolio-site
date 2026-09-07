@@ -880,13 +880,38 @@ html[data-theme='light'] .hero-stats { border-top-color: rgba(10, 20, 40, 0.12);
   .hero-grid { grid-template-columns: 1fr; }
   .hero-photo-wrap { justify-self: stretch; margin-top: 32px; }
 
+  /* CTA buttons side by side instead of stacking */
+  .hero-ctas { flex-wrap: nowrap; gap: 8px; }
+  .hero-ctas .btn-filled,
+  .hero-ctas .btn-outline {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 11px 10px;
+    font-size: 12.5px;
+    text-align: center;
+  }
+
+  /* Stat row stays on one line; labels wrap within their own column */
+  .hero-stats { flex-wrap: nowrap; gap: 10px; }
+  .hero-stats > div { flex: 1 1 0; min-width: 0; }
+  .hero-stats .stat-value { font-size: 19px; }
+  .hero-stats .stat-label { font-size: 9px; letter-spacing: 1px; }
+
   /* Tighter About section: less padding, less gap between stacked columns */
   .about-section { padding-top: 32px; padding-bottom: 32px; }
   .about-grid { grid-template-columns: 1fr; gap: 28px; }
   .about-label { margin-bottom: 14px; }
   .section-label-sm { margin-bottom: 10px; }
-  .skills-row { margin-bottom: 20px; }
-  .tools-row { flex-wrap: wrap; }
+
+  /* Skills as a 2-column grid instead of naturally-wrapping pills */
+  .skills-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  .skill-chip { padding: 9px 10px; font-size: 12.5px; text-align: center; }
+
+  /* Tools back to one row, sized to fit */
+  .tools-row { flex-wrap: nowrap; gap: 8px; }
+  .tool-item { width: 64px; }
+  .tool-badge { width: 48px; height: 48px; font-size: 13px; border-radius: 12px; }
+  .tool-name { font-size: 10.5px; }
 
   /* More compact Experience timeline rows */
   .timeline-row { grid-template-columns: 84px 16px 1fr; gap: 0 12px; }
