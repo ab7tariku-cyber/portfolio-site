@@ -5,7 +5,6 @@ const TAB_LIST = [
   'Brand Identity',
   'Social Media',
   'Print & Editorial',
-  'Brand Applications',
   'Interior Design & Visualization',
 ];
 
@@ -20,11 +19,9 @@ const WORK_DATA = [
   { name: 'Peace Campaign', category: 'Social Media', slug: 'peace-campaign', image: 'assets/hero-peace-campaign.png', placeholder: 'Peace Campaign post', hasCaseStudy: true },
   { name: 'Gospel Week', category: 'Social Media', slug: 'gospel-week', image: null, placeholder: 'Gospel Week post', hasCaseStudy: true },
   { name: 'HU Fellow Posts', category: 'Social Media', slug: 'hu-fellow-posts', image: 'assets/hero-hu-fellow-posts.png', placeholder: 'HU Fellow Posts', hasCaseStudy: true },
-  { name: 'Church Posts', category: 'Social Media', slug: 'church-posts', image: null, placeholder: 'Church Posts', hasCaseStudy: true },
+  { name: 'Church Posts', category: 'Social Media', slug: 'church-posts', image: 'assets/hero-church-posts.png', placeholder: 'Church Posts', hasCaseStudy: true },
   { name: 'African Holding Group — General Assembly', category: 'Print & Editorial', slug: 'ahg-general-assembly', image: null, placeholder: 'AHG General Assembly asset', hasCaseStudy: true },
   { name: 'Purity Magazine', category: 'Print & Editorial', slug: 'purity-magazine', image: null, placeholder: 'Purity Magazine spread', hasCaseStudy: true },
-  { name: 'African Holding Group — Stationery', category: 'Brand Applications', slug: 'ahg-stationery', image: null, placeholder: 'AHG stationery design', hasCaseStudy: true },
-  { name: 'African Holding Group — Sales Uniform', category: 'Brand Applications', slug: 'ahg-uniform', image: 'assets/work-uniform.jpg', placeholder: 'Uniform design', hasCaseStudy: true },
   { name: 'Cafe and Restaurant', category: 'Interior Design & Visualization', slug: 'cafe-and-restaurant', image: null, placeholder: 'Cafe and restaurant visualization', hasCaseStudy: true },
   { name: 'Hotel Rooms', category: 'Interior Design & Visualization', slug: 'hotel-rooms', image: null, placeholder: 'Hotel rooms visualization', hasCaseStudy: true },
   { name: 'Podcast Studio', category: 'Interior Design & Visualization', slug: 'podcast-studio', image: null, placeholder: 'Podcast studio visualization', hasCaseStudy: true },
@@ -86,7 +83,6 @@ const PROJECT_LIST = [
   { slug: 'nubia', name: 'Nubia Designs', category: 'Branding', heroImage: 'assets/case-nubia-hero.jpg', gallery: Array.from({ length: 14 }, (_, i) => 'assets/case-nubia-mockup-' + String(i + 1).padStart(2, '0') + '.jpg'), headline: 'A brand identity built for a growing design venture.', overview1: 'Nubia Designs needed a mark that felt distinctive and premium from the very first touchpoint.', overview2: 'The system pairs a confident wordmark with a flexible visual language built to scale across print and digital.' },
   { slug: 'godo-properties', name: 'Godo Properties', category: 'Branding', heroImage: 'assets/case-godo-properties-hero.jpg', gallery: Array.from({ length: 12 }, (_, i) => 'assets/case-godo-properties-mockup-' + String(i + 1).padStart(2, '0') + '.jpg'), headline: 'A real estate brand identity built on trust and scale.', overview1: 'Godo Properties needed an identity that read as established and trustworthy to buyers and investors alike.', overview2: 'The mark and system carry across signage, marketing collateral, and digital touchpoints with the same confident tone.' },
   { slug: 'lhc', name: 'LHC', category: 'Branding', heroImage: 'assets/case-lhc-hero.jpg', gallery: Array.from({ length: 14 }, (_, i) => 'assets/case-lhc-mockup-' + String(i + 1).padStart(2, '0') + '.jpg'), headline: 'A charity brand identity for children in need.', overview1: 'LHC is a charity club dedicated to helping children in need. The identity had to carry warmth and hope while staying credible for donors and partners.', overview2: 'The system pairs a friendly mark with a warm palette, extended into a supporting pattern used across materials.' },
-  { slug: 'ahg-uniform', name: 'African Holding Group Sales Uniform', category: 'Merchandise', heroImage: 'assets/uniform-hero.jpg', headline: 'More than a uniform, this concept was designed as a wearable extension of the brand.', overview1: "For African Holding Group's sales team, I created a visual system that balances professionalism, cultural character, and everyday comfort.", overview2: 'Sage green, bold black, tailored silhouettes, heritage-inspired geometric details, and signature gold accessories come together to create a confident and recognizable identity — ensuring the team looks unified while allowing flexibility and individual expression.', gallery: ['assets/uniform-detail-1.jpg', 'assets/uniform-detail-2.jpg'] },
 
   // Below: case studies awaiting real photos. gallery is pre-sized to the
   // agreed mockup count (see the naming convention in README.md) so the
@@ -113,7 +109,6 @@ const PROJECT_LIST = [
   { slug: 'church-posts', name: 'Church Posts', category: 'Social Media', heroImage: 'assets/case-church-posts-hero.png', gallery: Array.from({ length: 5 }, (_, i) => 'assets/case-church-posts-mockup-' + String(i + 1).padStart(2, '0') + '.png'), headline: 'Case study write-up coming soon.', overview1: 'Full project details for Church Posts are in progress.', overview2: '' },
   { slug: 'ahg-general-assembly', name: 'African Holding Group — General Assembly', category: 'Print', heroImage: null, headline: 'Case study write-up coming soon.', overview1: 'Full project details for the AHG General Assembly are in progress.', overview2: '', gallery: new Array(4) },
   { slug: 'purity-magazine', name: 'Purity Magazine', category: 'Print', heroImage: null, headline: 'Case study write-up coming soon.', overview1: 'Full project details for Purity Magazine are in progress.', overview2: '', gallery: new Array(4) },
-  { slug: 'ahg-stationery', name: 'African Holding Group — Stationery', category: 'Stationery', heroImage: null, headline: 'Case study write-up coming soon.', overview1: 'Full project details for AHG Stationery are in progress.', overview2: '', gallery: new Array(3) },
   { slug: 'cafe-and-restaurant', name: 'Cafe and Restaurant', category: 'Interior Design', heroImage: null, headline: 'Case study write-up coming soon.', overview1: 'Full project details for this Cafe and Restaurant visualization are in progress.', overview2: '', gallery: new Array(8) },
   { slug: 'hotel-rooms', name: 'Hotel Rooms', category: 'Interior Design', heroImage: null, headline: 'Case study write-up coming soon.', overview1: 'Full project details for this Hotel Rooms visualization are in progress.', overview2: '', gallery: new Array(6) },
   { slug: 'podcast-studio', name: 'Podcast Studio', category: 'Interior Design', heroImage: null, headline: 'Case study write-up coming soon.', overview1: 'Full project details for this Podcast Studio visualization are in progress.', overview2: '', gallery: new Array(4) },
