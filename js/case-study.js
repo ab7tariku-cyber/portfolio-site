@@ -26,9 +26,13 @@
   var galleryImages = project.gallery || [];
   var csGallery = document.getElementById('csGallery');
   var slotCount = galleryImages.length || 13;
+  var galleryColumns = project.galleryColumns || 1;
+  var galleryRatio = project.galleryRatio || '4253 / 2340';
+  csGallery.style.gridTemplateColumns = 'repeat(' + galleryColumns + ', 1fr)';
   for (var i = 0; i < slotCount; i++) {
     var item = document.createElement('div');
     item.className = 'cs-gallery-item';
+    item.style.aspectRatio = galleryRatio;
     var img = galleryImages[i];
     item.innerHTML = img
       ? '<img src="' + img + '" alt="" />'
